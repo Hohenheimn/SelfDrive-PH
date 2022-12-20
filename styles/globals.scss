@@ -6,6 +6,10 @@ form input,
 select {
     @apply shadow-md px-2 py-1 text-[16px];
 }
+form .disabled {
+    @apply shadow-none pointer-events-none;
+}
+
 label {
     @apply text-ThemeOrange font-medium;
 }

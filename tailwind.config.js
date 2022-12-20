@@ -8,6 +8,9 @@ module.exports = {
         extend: {
             colors: {
                 ThemeOrange: "#ff7924",
+                lowOrange: "#f99151",
+                ThemeYellow: "#f1b312",
+                ThemeBlue: "#00477e",
             },
             screens: {
                 "2500px": { max: "2500px" },

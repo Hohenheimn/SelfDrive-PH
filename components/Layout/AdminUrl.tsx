@@ -1,4 +1,4 @@
-export const Urls = [
+export const UrlsMain = [
     {
         title: "Dashboard",
         url: "/admin/dashboard",
@@ -23,6 +23,14 @@ export const Urls = [
         title: "Reservation",
         url: "/admin/reservation",
         active: "reservation",
+    },
+];
+
+export const UrlsSetting = [
+    {
+        title: "Profile",
+        url: "/admin/profile",
+        active: "profile",
     },
     {
         title: "Settings",

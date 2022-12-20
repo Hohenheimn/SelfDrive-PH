@@ -30,7 +30,7 @@ export default function Layout({ children }: Props) {
                             isToggle
                                 ? "bg-white text-ThemeOrange"
                                 : "bg-ThemeOrange text-white"
-                        } flex justify-center items-center rounded-full shadow-lg`}
+                        } hidden 820px:flex justify-center items-center rounded-full shadow-lg`}
                     >
                         <HiMenuAlt4 />
                     </aside>
