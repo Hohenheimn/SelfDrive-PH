@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { UrlsMain, UrlsSetting } from "./AdminUrl";
+import { UrlsMain } from "./AdminUrl";
 import { useRouter } from "next/router";
 
 export default function Sidebar() {
@@ -29,25 +29,7 @@ export default function Sidebar() {
                         </Link>
                     </li>
                 ))}
-                <li className="mb-2">
-                    <h1 className=" font-bold text-[16px] text-[#ac5c29]">
-                        SETTINGS
-                    </h1>
-                </li>
-                {UrlsSetting.map((item, index) => (
-                    <li key={index} className="mb-1">
-                        <Link
-                            href={item.url}
-                            className={`hover:text-ThemeOrange hover:bg-white transition-all duration-100 w-full inline-block py-2 px-1 ${
-                                router.pathname.includes(item.active)
-                                    ? "text-ThemeOrange bg-white"
-                                    : "text-white"
-                            }`}
-                        >
-                            {item.title}
-                        </Link>
-                    </li>
-                ))}
+
                 <li>
                     <button className="text-white hover:text-ThemeOrange hover:bg-white transition-all duration-100 w-full bg-[#f99151] block py-2 px-1">
                         Sign Out

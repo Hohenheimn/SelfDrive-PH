@@ -53,6 +53,12 @@ export default function DetailForm() {
                             Taguig City
                         </h1>
                     </li>
+                    <li className="flex flex-col w-[48%] mb-2">
+                        <label htmlFor="">Create by</label>
+                        <h1 className=" text-ThemeBlue font-medium">
+                            Jomari Tiu
+                        </h1>
+                    </li>
                     <li className="flex justify-end w-full items-center mt-10">
                         <Link className=" cursor-pointer mr-5" href="">
                             Back

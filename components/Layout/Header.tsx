@@ -7,7 +7,7 @@ export default function Header() {
     const User = true;
     const [isDrop, setDrop] = useState(false);
     return (
-        <nav className=" bg-ThemeOrange px-5 flex justify-between items-center py-2">
+        <nav className=" bg-ThemeOrange px-5 flex justify-between items-center py-2 sticky top-0 z-30">
             <aside>
                 <Image
                     alt="Logo"

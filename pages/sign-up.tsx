@@ -41,31 +41,19 @@ export default function SignUp() {
                                     <label>Address</label>
                                     <input type="text" />
                                 </li>
-                                <li className="flex flex-col w-[48%] mb-5">
+                                <li className="flex flex-col w-[48%] mb-10">
                                     <label>Gender</label>
                                     <select name="" id="">
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
                                 </li>
-                                <li className="mb-10">
-                                    <label
-                                        htmlFor="valid"
-                                        className="cursor-pointer"
-                                    >
-                                        Upload Valid ID (optional)
-                                    </label>
-                                    <input
-                                        id="valid"
-                                        className="hidden"
-                                        type="file"
-                                    />
-                                </li>
+
                                 <li className="flex justify-between items-center w-full">
                                     <p className="text-[12px] text-gray-500 font0-bold">
                                         Already have an account?
                                         <Link
-                                            href="#"
+                                            href="/login"
                                             className="text-[12px] hover:underline  font0-bold ml-2 text-ThemeOrange"
                                         >
                                             login here

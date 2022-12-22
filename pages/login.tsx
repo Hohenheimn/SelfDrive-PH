@@ -39,7 +39,7 @@ export default function Login() {
                                 className="w-full mb-5"
                             />
                             <ul className="flex w-full justify-between">
-                                <li>
+                                <li className="flex flex-col">
                                     <Link
                                         href="#"
                                         className="text-[12px] hover:underline text-gray-500 font0-bold"
@@ -53,6 +53,14 @@ export default function Login() {
                                     </button>
                                 </li>
                             </ul>
+                            <div>
+                                <Link
+                                    href="/sign-up"
+                                    className="text-[12px] hover:underline font0-bold text-ThemeOrange font-medium"
+                                >
+                                    Sign Up
+                                </Link>
+                            </div>
                         </form>
                         <div className="flex justify-end absolute right-[20px] bottom-[20px] 640px:px-2">
                             <p className=" text-ThemeOrange font-medium text-[14px] 480px:text-[12px]">

@@ -24,17 +24,9 @@ export const UrlsMain = [
         url: "/admin/reservation",
         active: "reservation",
     },
-];
-
-export const UrlsSetting = [
-    {
-        title: "Profile",
-        url: "/admin/profile",
-        active: "profile",
-    },
     {
         title: "Settings",
-        url: "/admin/settings",
+        url: "/admin/settings/company-information",
         active: "settings",
     },
 ];

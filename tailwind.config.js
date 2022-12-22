@@ -11,11 +11,12 @@ module.exports = {
                 lowOrange: "#f99151",
                 ThemeYellow: "#f1b312",
                 ThemeBlue: "#00477e",
+                fixedBG: "#00000061",
             },
             screens: {
                 "2500px": { max: "2500px" },
                 "1920px": { max: "1920px" },
-                "1550px": { max: "1550px" },
+                "1440px": { max: "1440px" },
                 "1366px": { max: "1366px" },
                 "1280px": { max: "1280px" },
                 "1024px": { max: "1024px" },
