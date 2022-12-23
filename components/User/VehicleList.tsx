@@ -8,6 +8,25 @@ export default function VehicleList() {
             <h1 className=" text-ThemeBlue font-bold text-center text-[24px] py-5 bg-gray-100 w-full">
                 Available Vehicles
             </h1>
+            <aside className=" flex pt-5 items-end">
+                <div className="flex items-center mr-10">
+                    <label htmlFor="">Start:</label>
+                    <input
+                        type="date"
+                        className="px-2 py-1 shadow-md mt-2 ml-5"
+                    />
+                </div>
+                <div className="flex items-center mr-10">
+                    <label htmlFor="">End:</label>
+                    <input
+                        type="date"
+                        className="px-2 py-1 shadow-md mt-2 ml-5"
+                    />
+                </div>
+                <div>
+                    <button className=" ThemeButton">Filter</button>
+                </div>
+            </aside>
             <ul className="flex flex-wrap w-full 1440px:w-[95%] py-10">
                 <List key={1} />
                 <List key={2} />

@@ -17,7 +17,7 @@ export default function Layout({ children }: Props) {
         return (
             <ul className="w-full flex relative">
                 <li
-                    className={` transition-all duration-1000 ease-in-out z-10 h-full w-[300px] bg-ThemeOrange fixed ${
+                    className={` transition-all duration-1000 ease-in-out z-[99] h-full w-[300px] bg-ThemeOrange fixed ${
                         isToggle
                             ? "820px:top-0 820px:left-0"
                             : "820px:top-0 820px:left-[-100%]"
@@ -25,10 +25,10 @@ export default function Layout({ children }: Props) {
                 >
                     <Sidebar />
                 </li>
-                <li className=" w-full pl-[300px] relative">
+                <li className=" w-full pl-[300px] 820px:pl-0 relative">
                     <aside
                         onClick={() => setToggle(!isToggle)}
-                        className={`absolute top-[20px] right-[20px] h-8 w-8 ${
+                        className={`fixed top-[20px] right-[20px] h-8 w-8 z-[99] ${
                             isToggle
                                 ? "bg-white text-ThemeOrange"
                                 : "bg-ThemeOrange text-white"
@@ -61,7 +61,36 @@ export default function Layout({ children }: Props) {
                     {children}
                 </div>
             </main>
-            <footer className="w-full h-[50px] bg-ThemeOrange"></footer>
+            <footer className="w-full bg-ThemeOrange px-5 pb-2">
+                <ul className="flex justify-center flex-wrap w-full">
+                    <li className="flex justify-center flex-col items-center w-full">
+                        <aside className="relative h-[150px] w-[300px]">
+                            <Image
+                                src="/images/bgLogo.jpg"
+                                fill
+                                className=" object-contain"
+                                alt={""}
+                            />
+                        </aside>
+                        <p className=" font-medium text-white mb-2">
+                            Cecelia Havens 456 White Finch St. North Augusta, SC
+                            29860
+                        </p>
+                        <p className=" font-medium text-white mb-2">
+                            099999999
+                        </p>
+                        <p className=" font-medium text-white mb-2">
+                            sample@gmail.com
+                        </p>
+                    </li>
+                    <li className="w-full mt-10">
+                        <p className="text-end text-white">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Aliquid, neque!
+                        </p>
+                    </li>
+                </ul>
+            </footer>
         </>
     );
 }

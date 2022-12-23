@@ -5,13 +5,13 @@ import Link from "next/link";
 export default function SignUp() {
     return (
         <div className=" bg-ThemeOrange min-h-screen flex justify-center items-center">
-            <ul className="w-[90%] max-w-[1000px] h-[500px] flex flex-wrap">
-                <li className="relative w-5/12 h-full 480px:w-full 480px:h-[200px]">
+            <ul className="w-[90%] max-w-[1000px] h-[500px] flex flex-wrap shadow-lg">
+                <li className="relative w-5/12 h-full 480px:w-full 480px:h-[200px] bg-ThemeOrange">
                     <Image
-                        src="/images/Sample.jpg"
+                        src="/images/loginBG.jpg"
                         alt="Image"
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        className=" object-cover"
                     />
                 </li>
                 <li className=" w-7/12 h-full 480px:h-auto 480px:pb-[100px] bg-white p-5 flex flex-col items-center justify-center relative 480px:w-full">

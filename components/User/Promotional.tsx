@@ -10,7 +10,7 @@ export default function Promotional() {
         dots: true,
         infinite: true,
         speed: 500,
-        autoplay: true,
+        // autoplay: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         nextArrow: <SampleNextArrow />,
@@ -27,13 +27,40 @@ export default function Promotional() {
             <Slider {...settings}>
                 {Images.map((item, index) => (
                     <div key={index}>
-                        <div className=" flex justify-center items-center w-full relative h-[500px] bg-ThemeOrange">
+                        <div className=" flex items-center w-full relative h-[500px] bg-ThemeOrange">
                             <Image
                                 src={item}
                                 fill
                                 className=" object-cover"
                                 alt=""
                             />
+                            <article className="w-2/4 z-20 relative p-10 px-20">
+                                <div className="bg-[#ffffffea] p-5 rounded-md shadow-md">
+                                    <h1 className=" text-[24px] font-bold text-ThemeBlue">
+                                        Christmass Promo
+                                    </h1>
+                                    <p className="text-[16px] mb-5">
+                                        Lorem ipsum dolor sit amet consectetur,
+                                        adipisicing elit. Laudantium rem
+                                        obcaecati minus quo animi perspiciatis
+                                        illo, a rerum, quos minima ipsa fugiat
+                                        quae autem, dolor vitae? Eum dolores
+                                        temporibus reprehenderit.
+                                    </p>
+                                    <div className="flex">
+                                        <span className=" font-medium mr-2">
+                                            Starts on:
+                                        </span>
+                                        <p>12/12/2022</p>
+                                    </div>
+                                    <div className="flex">
+                                        <span className=" font-medium mr-2">
+                                            Until on:
+                                        </span>
+                                        <p>12/12/2022</p>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
                     </div>
                 ))}

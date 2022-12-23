@@ -9,13 +9,13 @@ export default function Verification() {
     const defaultImage = "/images/sampleid.jpg";
     return (
         <div className=" bg-ThemeOrange min-h-screen flex justify-center items-center">
-            <ul className="w-[90%] max-w-[1000px] h-[500px] flex flex-wrap">
+            <ul className="w-[90%] max-w-[1000px] h-[500px] flex flex-wrap shadow-lg">
                 <li className="relative w-5/12 h-full 480px:w-full 480px:h-[200px] flex justify-center items-center">
                     <Image
-                        src="/images/Sample.jpg"
+                        src="/images/loginBG.jpg"
                         alt="Image"
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        className=" object-cover"
                     />
                     <ul className="relative z-10 bg-white p-5 rounded-md shadow-md">
                         <li>

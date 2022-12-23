@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import CompanyInformation from "../../../components/Admin/Settings/CompanyInformation";
 import PromotionalPost from "../../../components/Admin/Settings/PromotionalPost/PromotionalPost";
 import Branch from "../../../components/Admin/Settings/Branch/Branch";
-import Role from "../../../components/Admin/Settings/Role.tsx/Role";
+import Role from "../../../components/Admin/Settings/Role/Role";
 import UnitCategories from "../../../components/Admin/Settings/UnitCategories/UnitCategories";
 
 export default function Page() {
