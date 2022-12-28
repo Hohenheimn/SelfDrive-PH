@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import DashboardCalendar from "../../components/DashboardCalendar";
 
 export default function Dashboard() {
     const dashData = [
@@ -32,6 +33,9 @@ export default function Dashboard() {
     return (
         <div className="">
             <ul className="w-full flex justify-between flex-wrap">
+                <li className="w-full mb-5">
+                    <DashboardCalendar />
+                </li>
                 {dashData.map((item, index) => (
                     <li
                         key={index}
