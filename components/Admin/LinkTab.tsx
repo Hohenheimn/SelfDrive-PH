@@ -5,31 +5,22 @@ type Props = {
     Object: {
         id: number;
         title: string;
-        active: boolean;
+        active: string;
         url: string;
     }[];
-    setObject: Function;
+    currentPage: string;
 };
 
-export default function LinkTab({ Object, setObject }: Props) {
-    const ChangeHandler = (id: number) => {
-        const update = Object.map((item) => {
-            if (item.id === id) {
-                return { ...item, active: true };
-            } else {
-                return { ...item, active: false };
-            }
-        });
-        setObject(update);
-    };
+export default function LinkTab({ Object, currentPage }: Props) {
     return (
         <ul className="flex mb-10">
             {Object.map((item, index) => (
-                <li key={index} onClick={() => ChangeHandler(item.id)}>
+                <li key={index}>
                     <Link
                         href={item.url}
                         className={`mr-5 font-medium cursor-pointer px-2 py-1 ${
-                            item.active && "text-ThemeOrange bg-white shadow-md"
+                            item.active === currentPage &&
+                            "text-ThemeOrange bg-white shadow-md"
                         }`}
                     >
                         {item.title}
