@@ -34,11 +34,11 @@ label {
 }
 
 .table-container {
-    @apply overflow-x-auto max-h-[300px] p-2 pt-0 relative w-full;
+    @apply overflow-x-auto min-h-[300px] h-[60vh] p-2 pt-0 relative w-full;
     .table {
         @apply w-full 480px:w-[600px];
         thead {
-            @apply shadow-md bg-white;
+            @apply shadow-md bg-white sticky top-0;
             th {
                 @apply text-ThemeOrange uppercase py-2 480px:text-[13px] px-2;
             }

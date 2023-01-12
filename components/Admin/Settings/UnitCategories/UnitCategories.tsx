@@ -5,32 +5,36 @@ import Brand from "./Brand/Brand";
 import Classification from "./Classification/Classification";
 import Inclusion from "./Inclusion/Inclusion";
 
-export default function UnitCategories() {
+type Props = {
+    currentPage: string;
+};
+
+export default function UnitCategories({ currentPage }: Props) {
     const router = useRouter();
     const pageName: any = router.query.page;
     const [isTab, setTab] = useState([
         {
             id: 1,
             title: "Brand",
-            active: true,
+            active: "brand",
             url: "/admin/settings/unit-categories/brand",
         },
         {
             id: 2,
             title: "Classification",
-            active: false,
+            active: "classification",
             url: "/admin/settings/unit-categories/classification",
         },
         {
             id: 3,
             title: "Inclusions",
-            active: false,
+            active: "inclusions",
             url: "/admin/settings/unit-categories/inclusions",
         },
     ]);
     return (
         <div>
-            <LinkTab Object={isTab} setObject={setTab} />
+            <LinkTab Object={isTab} currentPage={currentPage} />
 
             {pageName[1] === "brand" && <Brand />}
             {pageName[1] === "classification" && <Classification />}

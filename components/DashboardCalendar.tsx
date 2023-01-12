@@ -340,7 +340,7 @@ const Days = ({ SelectedDateHandler, day, today, isSelected }: PropsDays) => {
                         {format(day, "yyyy")}
                     </p>
                 </aside>
-                <p className=" leading-tight font-thin text-[13px] ">
+                <p className=" text-ThemeBlue leading-tight font-thin text-[13px] ">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Odit, doloremque.
                 </p>

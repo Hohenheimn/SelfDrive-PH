@@ -8,6 +8,7 @@ import Pagination from "../../../Pagination";
 import { Payload } from "./Type";
 import FormDetail from "./FormDetail";
 import Modify from "./Modify";
+import SearchAdd from "../../../SearchAdd";
 
 type dataItem = {
     description: string;
@@ -53,25 +54,12 @@ export default function MainBranch() {
             )}
             {isModify && <Modify setToggle={setModify} id={isID} />}
 
-            <div className="flex justify-between items-center mb-5">
-                <aside>
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        value={isSearch}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className="px-5 py-2 w-[300px] shadow-md"
-                    />
-                </aside>
-                <button
-                    className="ThemeButton"
-                    onClick={() => {
-                        setAdd(true);
-                    }}
-                >
-                    Add Branch
-                </button>
-            </div>
+            <SearchAdd
+                isSearch={isSearch}
+                setSearch={setSearch}
+                toggleAdd={setAdd}
+            />
+
             <div className="table-container mb-10">
                 <table className="table">
                     <thead>

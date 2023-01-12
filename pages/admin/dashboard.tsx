@@ -33,13 +33,10 @@ export default function Dashboard() {
     return (
         <div className="">
             <ul className="w-full flex justify-between flex-wrap">
-                <li className="w-full mb-5">
-                    <DashboardCalendar />
-                </li>
                 {dashData.map((item, index) => (
                     <li
                         key={index}
-                        className={`w-[32%] h-[150px] shadow-md rounded-md p-5 flex justify-center items-center mb-5 ${
+                        className={`w-[32%] h-[100px] shadow-md rounded-md p-5 flex justify-center items-center mb-5 ${
                             index % 2
                                 ? "bg-lowOrange text-white"
                                 : "bg-white text-ThemeBlue"
@@ -56,29 +53,32 @@ export default function Dashboard() {
                         </div>
                     </li>
                 ))}
-                <li className="w-full mb-5">
+                <li className="w-[48%]">
                     <Link
                         href="#"
-                        className="flex justify-between items-center rounded-md shadow-md p-5 w-full bg-ThemeYellow hover:bg-lowOrange transition-all duration-300"
+                        className="flex justify-between items-center rounded-md shadow-md p-2 px-5 w-full bg-ThemeYellow hover:bg-lowOrange transition-all duration-300"
                     >
-                        <h1 className="font-bold text-[24px] text-ThemeBlue">
+                        <h1 className="font-bold text-[20px] text-ThemeBlue">
                             Host Approval
                         </h1>
 
                         <BsFillArrowRightCircleFill className="text-ThemeBlue text-[32px]" />
                     </Link>
                 </li>
-                <li className="w-full">
+                <li className="w-[48%]">
                     <Link
                         href="#"
-                        className="flex justify-between items-center rounded-md shadow-md p-5 w-full bg-ThemeYellow hover:bg-lowOrange transition-all duration-300"
+                        className="flex justify-between items-center rounded-md shadow-md p-2 px-5 w-full bg-ThemeYellow hover:bg-lowOrange transition-all duration-300"
                     >
-                        <h1 className="font-bold text-[24px] text-ThemeBlue">
+                        <h1 className="font-bold text-[20px] text-ThemeBlue">
                             Client Approval
                         </h1>
 
                         <BsFillArrowRightCircleFill className="text-ThemeBlue text-[32px]" />
                     </Link>
+                </li>
+                <li className="w-full mt-5">
+                    <DashboardCalendar />
                 </li>
             </ul>
         </div>

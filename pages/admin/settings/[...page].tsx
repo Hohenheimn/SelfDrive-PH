@@ -46,7 +46,9 @@ export default function Page({ page }: any) {
             {page[3] === "promotional-post" && <PromotionalPost />}
             {page[3] === "branch" && <MainBranch />}
             {page[3] === "role" && <Role />}
-            {page[3] === "unit-categories" && <UnitCategories />}
+            {page[3] === "unit-categories" && (
+                <UnitCategories currentPage={page[4]} />
+            )}
         </div>
     );
 }
