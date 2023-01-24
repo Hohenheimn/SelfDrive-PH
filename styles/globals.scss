@@ -4,7 +4,10 @@
 
 form {
     textarea,
-    input,
+    input[type="password"],
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
     select {
         @apply shadow-md px-2 py-1 text-[16px];
     }
@@ -19,6 +22,10 @@ form.disabled {
     select {
         @apply shadow-none pointer-events-none bg-transparent;
     }
+}
+
+input[type="checkbox"] {
+    @apply border border-gray-400 appearance-none w-5 h-5 rounded-md shadow-md checked:bg-ThemeOrange;
 }
 
 form .disabled {
