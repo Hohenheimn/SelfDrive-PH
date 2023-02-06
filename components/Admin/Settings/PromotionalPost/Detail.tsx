@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Add, Update } from "./Query";
+import { DisplayImage } from "../../../DisplayImage";
 
 type Props = {
     type: string;
@@ -41,9 +42,13 @@ const schema = yup.object().shape({
 });
 
 export default function Detail({ type, DefaultValue, setToggle, id }: Props) {
+    const [PromotionalImage, setPromotionalImage] =
+        useState("/images/Sample.jpg");
+    const defaultImage = "/images/Sample.jpg";
     const {
         register,
         handleSubmit,
+        watch,
         formState: { errors },
     } = useForm<Payload>({
         resolver: yupResolver(schema),
@@ -105,20 +110,29 @@ export default function Detail({ type, DefaultValue, setToggle, id }: Props) {
         <ModalTemp>
             <form onSubmit={handleSubmit(Submit)}>
                 <ul className="flex flex-wrap justify-between">
-                    {/* <li className="w-full h-[200px] relative mb-5">
+                    <li className="w-full h-[200px] relative mb-5 border">
                         <Image
-                            src={DefaultValue.photo_path}
+                            src={PromotionalImage}
                             alt=""
                             className=" object-contain"
                             fill
                         />
-                    </li> */}
-                    <li className="w-[48%] mb-5">
+                    </li>
+
+                    <li className="w-full mb-5">
                         <label htmlFor="">Image:</label>
                         <input
                             type="file"
                             className="w-full font-medium"
                             {...register("photo_path")}
+                            onChange={(e) => {
+                                DisplayImage(
+                                    e,
+                                    PromotionalImage,
+                                    setPromotionalImage,
+                                    defaultImage
+                                );
+                            }}
                         />
                         {errors.photo_path && (
                             <p className=" text-red-500 text-[12px] mt-2">
@@ -140,7 +154,12 @@ export default function Detail({ type, DefaultValue, setToggle, id }: Props) {
                         )}
                     </li>
                     <li className="w-[48%] mb-5 flex justify-between">
-                        <label htmlFor="status">Status:</label>
+                        <label htmlFor="status">
+                            Status:{" "}
+                            <span className="text-black">
+                                {watch("visible") ? "Visible" : "Not Visible"}
+                            </span>
+                        </label>
                         <input
                             type="checkbox"
                             id="status"

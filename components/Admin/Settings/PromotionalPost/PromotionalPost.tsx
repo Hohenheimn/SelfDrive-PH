@@ -111,6 +111,7 @@ type ListProps = {
 const List = ({ setID, itemData, setToggle, Deletehandler }: ListProps) => {
     const router = useRouter();
     const BaseUrl = process.env.NEXT_PUBLIC_API_URL;
+    console.log(itemData.photo_path);
     return (
         <tr className="cursor-pointer hover:bg-gray-100">
             <td
@@ -122,7 +123,7 @@ const List = ({ setID, itemData, setToggle, Deletehandler }: ListProps) => {
             >
                 {/* <aside className="relative w-[200px] 1440px:w-[150px] h-[100px]">
                     <Image
-                        src={"http://127.0.0.1:8000/" + itemData.photo_path}
+                        src={itemData.photo_path}
                         className=" object-cover"
                         fill
                         alt=""

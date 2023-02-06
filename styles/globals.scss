@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-form {
+form,
+.form {
     textarea,
     input[type="password"],
     input[type="text"],
