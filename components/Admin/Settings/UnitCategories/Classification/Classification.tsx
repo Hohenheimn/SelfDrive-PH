@@ -1,65 +1,147 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Detail from "./Detail";
+import Pagination from "../../../../Pagination";
+import FormDetail from "./FormDetail";
+import Modify from "./Modify";
+import SearchAdd from "../../../../SearchAdd";
+import {
+    DeleteClassifications,
+    DisplayClassifications,
+} from "../../../../../ReactQuery/Setting/QueryClassication";
+
+type dataItem = {
+    description: string;
+    name: string;
+    id: number;
+};
+type Payload = {
+    name: string;
+    description: string;
+};
 
 export default function Classification() {
-    const [isID, setID] = useState<null | number>(null);
+    const [isID, setID] = useState<number | null>(null);
+    const [isSearch, setSearch] = useState("");
+    const [PageNumber, setPageNumber] = useState(1);
+    const { isLoading, data, isError } = DisplayClassifications(
+        PageNumber,
+        isSearch
+    );
+    const [isAdd, setAdd] = useState(false);
+    const [isModify, setModify] = useState(false);
+
+    const Default: Payload = {
+        name: "",
+        description: "",
+    };
+
+    const onSuccess = () => {
+        alert("Successfully deleted!");
+    };
+    const onError = () => {
+        alert("Something is wrong!");
+    };
+    const { mutate: deleteMutate } = DeleteClassifications(onSuccess, onError);
+
+    const Deletehandler = (id: any) => {
+        deleteMutate(id);
+    };
+
     return (
         <div>
-            {isID !== null && <Detail setID={setID} isID={isID} />}
-            <div className="flex justify-between items-center mb-5">
-                <aside></aside>
-                <button
-                    className="ThemeButton"
-                    onClick={() => {
-                        setID(-1);
-                    }}
-                >
-                    Add Classification
-                </button>
-            </div>
-            <div className="table-container">
+            {isAdd && (
+                <FormDetail
+                    DefaultValue={Default}
+                    type="add"
+                    setToggle={setAdd}
+                />
+            )}
+            {isModify && <Modify setToggle={setModify} id={isID} />}
+
+            <SearchAdd
+                isSearch={isSearch}
+                setSearch={setSearch}
+                toggleAdd={setAdd}
+            />
+
+            <div className="table-container mb-10">
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Classification</th>
+                            <th>NAME</th>
+
                             <th>DESCRIPTION</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <List setID={setID} />
-                        <List setID={setID} />
-                        <List setID={setID} />
+                        {!isLoading &&
+                            data?.data?.data?.data.map(
+                                (item: dataItem, index: number) => (
+                                    <List
+                                        setID={setID}
+                                        itemData={item}
+                                        key={index}
+                                        setToggle={setModify}
+                                        Deletehandler={Deletehandler}
+                                    />
+                                )
+                            )}
                     </tbody>
                 </table>
             </div>
+            {isError && (
+                <div className=" w-full flex justify-center">
+                    <h1 className=" text-center text-red-500 font-bold py-5">
+                        Error Something is Wrong
+                    </h1>
+                </div>
+            )}
+            <Pagination
+                setTablePage={setPageNumber}
+                TablePage={PageNumber}
+                PageNumber={data?.data.data.last_page}
+                CurrentPage={data?.data.data.current_page}
+            />
         </div>
     );
 }
 
 type ListProps = {
     setID: Function;
+    itemData: dataItem;
+    setToggle: Function;
+    Deletehandler: (id: any) => void;
 };
 
-const List = ({ setID }: ListProps) => {
+const List = ({ setID, itemData, setToggle, Deletehandler }: ListProps) => {
     const router = useRouter();
-    return (
-        <tr
-            onClick={() => {
-                setID(1);
-            }}
-            className="cursor-pointer hover:bg-gray-100"
-        >
-            <td className=" font-bold">Armored</td>
 
-            <td>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Tenetur, ducimus!
+    return (
+        <tr className="cursor-pointer hover:bg-gray-100">
+            <td
+                className=" font-bold"
+                onClick={() => {
+                    setID(itemData.id);
+                    setToggle(true);
+                }}
+            >
+                {itemData.name}
+            </td>
+
+            <td
+                onClick={() => {
+                    setID(itemData.id);
+                    setToggle(true);
+                }}
+            >
+                {itemData.description}
             </td>
             <td className="flex justify-center">
-                <button className=" bg-red-400 text-white px-2 py-2 rounded-md hover:bg-red-500">
+                <button
+                    className=" bg-red-400 text-white px-2 py-2 rounded-md hover:bg-red-500"
+                    onClick={() => Deletehandler(itemData.id)}
+                >
                     Delete
                 </button>
             </td>

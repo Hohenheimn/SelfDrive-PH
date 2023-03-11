@@ -86,7 +86,7 @@ const CompanyForm = ({ DefaultValue }: CompanyForm) => {
             >
                 <input
                     type="text"
-                    className="text-[32px] text-ThemeOrange font-bold mt-5 text-center"
+                    className="bigletter text-ThemeOrange font-bold mt-5 text-center"
                     {...register("name")}
                 />
                 {errors.name && (

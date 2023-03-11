@@ -3,9 +3,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { UrlsMain } from "./AdminUrl";
 import { useRouter } from "next/router";
+import { getCookie, deleteCookie } from "cookies-next";
+import api from "../../util/api";
 
 export default function Sidebar() {
     const router = useRouter();
+
+    const SignOut = async () => {
+        try {
+            const token = getCookie("user");
+            const response = await api.get("/auth/logout", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (response.status === 200) {
+                deleteCookie("user");
+                router.push("/login");
+            }
+        } catch (error) {
+            deleteCookie("user");
+            router.push("/login");
+        }
+    };
     return (
         <div className="w-full flex flex-col items-center py-5 px-2 overflow-y-auto min-h-screen ">
             <Image src="/images/Logo.jpg" height={80} width={80} alt="Logo" />
@@ -31,7 +52,10 @@ export default function Sidebar() {
                 ))}
 
                 <li>
-                    <button className="text-white hover:text-ThemeOrange hover:bg-white transition-all duration-100 w-full bg-[#f99151] block py-2 px-1">
+                    <button
+                        onClick={SignOut}
+                        className="text-white hover:text-ThemeOrange hover:bg-white transition-all duration-100 w-full bg-[#f99151] block py-2 px-1"
+                    >
                         Sign Out
                     </button>
                 </li>

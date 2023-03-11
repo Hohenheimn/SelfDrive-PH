@@ -12,7 +12,11 @@ form,
     select {
         @apply shadow-md px-2 py-1 text-[16px];
     }
+    input[type="text"].bigletter {
+        @apply text-[32px];
+    }
 }
+
 select {
     @apply shadow-md px-2 py-1 text-[16px];
 }

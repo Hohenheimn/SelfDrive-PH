@@ -1,10 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Rergister } from "../ReactQuery/Setting/QueryRegister";
+import { MutateError, MutateSuccess } from "../GlobalFunction/MutateMessage";
+import ModalTemp from "../components/ModalTemp";
+import { ButtonLoader } from "../components/Loader";
+
+const schema = yup.object().shape({
+    email: yup.string().email("Must be an email!").required("Required!"),
+    password: yup
+        .string()
+        .required("Required!")
+        .min(6, "Must at least 6 characters up!"),
+    name: yup.string().required("Required!"),
+    confirm_password: yup
+        .string()
+        .required("Required!")
+        .oneOf([yup.ref("password"), null], "Passwords don't match!"),
+});
 
 export default function SignUp() {
+    const [isSuccess, setSucces] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setValue,
+    } = useForm<{
+        email: string;
+        password: string;
+        name: string;
+        confirm_password: string;
+    }>({
+        resolver: yupResolver(schema),
+    });
+
+    const onSuccess = () => {
+        setSucces(true);
+    };
+
+    const onError = () => {
+        MutateError("Something is wrong");
+    };
+
+    const { isLoading, isError, mutate } = Rergister(onSuccess, onError);
+
+    const Submit = (data: {
+        email: string;
+        password: string;
+        name: string;
+    }) => {
+        const Payload = {
+            email: data.email,
+            password: data.password,
+            name: data.name,
+        };
+        mutate(Payload);
+    };
     return (
         <div className=" bg-ThemeOrange min-h-screen flex justify-center items-center">
+            {isSuccess && (
+                <ModalTemp>
+                    <h3 className=" text-center mb-5">
+                        Please wait for an Admin to send an email for
+                        verification of your account!
+                    </h3>
+                    <h1 className="text-center text-[24px] font-bold text-ThemeOrange">
+                        Thank You !
+                    </h1>
+                </ModalTemp>
+            )}
             <ul className="w-[90%] max-w-[1000px] h-[500px] flex flex-wrap shadow-lg">
                 <li className="relative w-5/12 h-full 480px:w-full 480px:h-[200px] bg-ThemeOrange">
                     <Image
@@ -27,26 +95,55 @@ export default function SignUp() {
                         <h1 className=" font-bold text-ThemeOrange text-[24px] mb-5">
                             Selfdrive Philippines - Register
                         </h1>
-                        <form action="" className="flex flex-col items-start">
+                        <form
+                            onSubmit={handleSubmit(Submit)}
+                            className="flex flex-col items-start"
+                        >
                             <ul className="flex flex-wrap w-full justify-between">
                                 <li className="flex flex-col w-[48%] mb-5">
                                     <label>Email</label>
-                                    <input type="email" />
+                                    <input
+                                        type="email"
+                                        {...register("email")}
+                                    />
+                                    {errors.email && (
+                                        <p className=" text-red-500 text-[12px] mt-2">
+                                            {errors.email?.message}
+                                        </p>
+                                    )}
                                 </li>
                                 <li className="flex flex-col w-[48%] mb-5">
                                     <label>Name</label>
-                                    <input type="text" />
+                                    <input type="text" {...register("name")} />
+                                    {errors.name && (
+                                        <p className=" text-red-500 text-[12px] mt-2">
+                                            {errors.name?.message}
+                                        </p>
+                                    )}
                                 </li>
                                 <li className="flex flex-col w-[48%] mb-5">
-                                    <label>Address</label>
-                                    <input type="text" />
+                                    <label>Password</label>
+                                    <input
+                                        type="password"
+                                        {...register("password")}
+                                    />
+                                    {errors.password && (
+                                        <p className=" text-red-500 text-[12px] mt-2">
+                                            {errors.password?.message}
+                                        </p>
+                                    )}
                                 </li>
-                                <li className="flex flex-col w-[48%] mb-10">
-                                    <label>Gender</label>
-                                    <select name="" id="">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
+                                <li className="flex flex-col w-[48%] mb-5">
+                                    <label>Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        {...register("confirm_password")}
+                                    />
+                                    {errors.confirm_password && (
+                                        <p className=" text-red-500 text-[12px] mt-2">
+                                            {errors.confirm_password?.message}
+                                        </p>
+                                    )}
                                 </li>
 
                                 <li className="flex justify-between items-center w-full">
@@ -61,7 +158,11 @@ export default function SignUp() {
                                     </p>
 
                                     <button className="ThemeButton">
-                                        Submit
+                                        {isLoading ? (
+                                            <ButtonLoader />
+                                        ) : (
+                                            "Submit"
+                                        )}
                                     </button>
                                 </li>
                             </ul>
